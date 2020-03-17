@@ -15,22 +15,22 @@ public class TopicController {
     @Autowired
     private TopicRepository tRepo;
 
-    @GetMapping("/paivakirja") //printtaa kaikki
+    @GetMapping("/topic") //printtaa kaikki
     public Iterable<Topic> TopicController() {
         return tRepo.findAll();
     }
 
-    @GetMapping("/paivakirja/{id}")
+    @GetMapping("/topic/{id}")
     public ResponseEntity<?> haeIdlla(@PathVariable Integer id) {
         Optional<Topic> topic = tRepo.findById(id);
         return ResponseEntity.ok(topic.get());
     }
-    @PostMapping("/paivakirja")
+    @PostMapping("/topic")
     public Topic lisaaTopic (@RequestBody Topic topic){
 
         return tRepo.save(topic);
     }
-    @DeleteMapping("/paivakirja/{id}")
+    @DeleteMapping("/topic/{id}")
     public ResponseEntity<?> deleteTopic (@PathVariable(name = "id", required = true)int id){
         Optional<Topic> topic = tRepo.findById(id);
         if(topic.isPresent()){

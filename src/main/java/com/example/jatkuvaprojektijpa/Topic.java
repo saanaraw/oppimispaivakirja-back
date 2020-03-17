@@ -11,9 +11,9 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Topic {
     @Id
     @GeneratedValue(strategy = SEQUENCE,
-            generator = "paivakirja_id_seq")
-    @SequenceGenerator(name = "paivakirja_id_seq",
-            sequenceName = "paivakirja_id_seq",
+            generator = "topic_id_seq")
+    @SequenceGenerator(name = "topic_id_seq",
+            sequenceName = "topic_id_seq",
             allocationSize = 1)
     @Column(unique = true, nullable = false)
     private int id;
@@ -25,6 +25,8 @@ public class Topic {
     private LocalDate creationDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate completionDate;
+    private LocalDate alarm;
+    private boolean status;
 
     public Topic() {
     }
@@ -39,7 +41,25 @@ public class Topic {
                 ", complete=" + complete +
                 ", creationDate=" + creationDate +
                 ", completionDate=" + completionDate +
+                ", alarm=" + alarm +
+                ", status=" + status +
                 '}';
+    }
+
+    public LocalDate getAlarm() {
+        return alarm;
+    }
+
+    public void setAlarm(LocalDate alarm) {
+        this.alarm = alarm;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getId() {
